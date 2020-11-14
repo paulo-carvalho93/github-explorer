@@ -49,6 +49,13 @@ const Dashboard: React.FC = () => {
       return;
     }
 
+    const hasRepo = repositories.find(repo => repo.full_name === newRepo);
+
+    if (hasRepo) {
+      setInputError('Repository duplicated!');
+      return;
+    }
+
     try {
       const response = await api.get<Repository>(`repos/${newRepo}`);
 
