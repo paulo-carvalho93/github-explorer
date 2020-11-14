@@ -4,7 +4,7 @@ import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import api from '../../services/api';
 
-import { Header, RepositoryInfo, Issues } from './styles';
+import { Header, RepositoryInfo, Issues, Pagination } from './styles';
 
 import logoImg from '../../assets/logo.svg';
 
@@ -36,19 +36,45 @@ interface Issue {
 const Repository: React.FC = () => {
   const [repository, setRepository] = useState<Repository | null>(null);
   const [issues, setIssues] = useState<Issue[]>([]);
+  const [page, setPage] = useState(1);
   const { params } = useRouteMatch<RepositoryParams>();
 
   useEffect(() => {
     async function loadData(): Promise<void> {
-      const [repositories, issue] = await Promise.all([
+      const [repositoriesData, issuesData] = await Promise.all([
         api.get(`repos/${params.repository}`),
         api.get(`repos/${params.repository}/issues`),
+        {
+          params: {
+            page,
+            per_page: 5,
+          },
+        },
       ]);
-      setRepository(repositories.data);
-      setIssues(issue.data);
+      setRepository(repositoriesData.data);
+      setIssues(issuesData.data);
     }
     loadData();
-  }, [params.repository]);
+  }, [params.repository, page]);
+
+  useEffect(() => {
+    async function loadIssue() {
+      const response = await api.get(`repos/${params.repository}/issues`, {
+        params: {
+          page,
+          per_page: 5,
+        },
+      });
+
+      setIssues(response.data);
+    }
+
+    loadIssue();
+  }, [params.repository, page]);
+
+  function handlePage(action: string) {
+    setPage(action === 'back' ? page - 1 : page + 1);
+  }
 
   return (
     <>
@@ -101,6 +127,20 @@ const Repository: React.FC = () => {
           </a>
         ))}
       </Issues>
+
+      <Pagination>
+        <button
+          type="button"
+          onClick={() => handlePage('back')}
+          disabled={page < 2}
+        >
+          Back
+        </button>
+
+        <button type="button" onClick={() => handlePage('next')}>
+          Next
+        </button>
+      </Pagination>
     </>
   );
 };

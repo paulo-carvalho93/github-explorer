@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { shade } from 'polished';
 
 export const Header = styled.header`
   display: flex;
@@ -119,6 +120,33 @@ export const Issues = styled.div`
     svg {
       margin-left: auto;
       color: #c9c9d4;
+    }
+  }
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  button {
+    margin-top: 40px;
+    outline: 0;
+    border-radius: 0px 5px 5px 0px;
+    border: 0;
+    background: #04d361;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background: ${shade(0.2, '#04d361')};
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: 0.5;
     }
   }
 `;
