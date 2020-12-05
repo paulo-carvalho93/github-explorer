@@ -4,7 +4,7 @@
   <img alt="screenshot" src="./src/assets/logo.svg" width="300px" />
 <p>
 
-<p align="center">	
+<p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/paulo-carvalho93/github-explorer">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/paulo-carvalho93/github-explorer">
 </p>
@@ -15,7 +15,7 @@
 The idea of this mini project is just to boost my abilities with React.js, Typescript, and Styled Components.
 
 <p align="center">
-  <img alt="screenshot" width="650px" src="./.github/assets/happy.png" />
+  <img alt="screenshot" width="650px" src="./.github/assets/github_explorer.png" />
 <p>
 
 </div>
@@ -57,7 +57,7 @@ I'm using Github API to collect all the information about the repository and the
   - It's **necessary** to have **[Node.js](https://nodejs.org/en/)** installed on the computer
   - It's **necessary** to have **[Git](https://git-scm.com/)** installed and configured on the computer
   - Also, it's **necessary** to have a package manager either **[NPM](https://www.npmjs.com/)** or **[Yarn](https://yarnpkg.com/)**.
-  
+
 Clone the repository:
 
 ```sh
@@ -71,12 +71,12 @@ Clone the repository:
   $ cd github-explorer
   # Installing project dependencies.
   $ yarn # or npm install
-  
+
   # Start Web Project
   $ yarn start # or npm start
-  
+
   # Do you want to publish ?
   $ yarn build # or npm build
   # Static files for web will be saved in the `public` folder
-  
+
 ```
